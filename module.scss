@@ -1,0 +1,65 @@
+//Mobile Hamburger Menu//
+//@import this module
+//define your variables
+
+//Add this style to your hidden mobile navigation
+@mixin mobile_nav_module ($mobile_nav_background_color,$width, $height) {
+  list-style: none;
+  background-color: $mobile_nav_background_color;
+  width: $width;
+  height: $height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+//Add this style to your mobile nav a tags
+@mixin mobile_nav_anchors ($mobile_nav_padding_top) {
+  text-decoration: none;
+  text-transform: uppercase;
+  padding-top: $mobile_nav_padding_top;
+}
+//Wrap your entire site in a section. Add this style to your site wrap//
+@mixin mobile_site_wrap_module ($mobile_nav_background_color) {
+  min-height: 120em;
+  min-width: 100%;
+  background-color: $mobile_nav_background_color;
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  z-index: 1;
+  transition: left 0.2s;
+}
+//In order for this to work you need to use a checkbox I call "trigger" at the top of your page
+//with this label class attached to it
+@mixin mobile_nav_trigger_label {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 2;
+  width: 2.188em;
+  height: 2.188em;
+  cursor: pointer;
+  background-image: $mobile_menu_icon;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+//This class is for the checkbox also includes the checked states
+@mixin mobile_nav_trigger_module {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  + label{
+      transition: left 0.2s;
+  }
+  &:checked + label {
+    left: 245px;
+  }
+  &:checked ~ .mobile_site_wrap {
+    left: 200px;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+  }
+}
+
+
+
+
